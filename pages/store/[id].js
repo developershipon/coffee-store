@@ -42,6 +42,7 @@ const CoffeeStore = (props) => {
       <div className="w-64 h-64 object-cover object-center rounded relative">
         <Image
           src={coffeestore.imgUrl}
+          alt="image"
           objectFit="contain"
           objectPosition="center"
           layout="fill"
