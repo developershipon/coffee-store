@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-export const usePosition = (getLocation) => {
-  const [position, setPosition] = useState("");
+export const useLocation = () => {
+  const [latlong, setLatlong] = useState("");
   const [error, setError] = useState("");
   const [isfind, setIsfind] = useState(false);
 
@@ -9,17 +9,17 @@ export const usePosition = (getLocation) => {
     setIsfind(false);
     const latitude = coords.latitude;
     const longitude = coords.longitude;
-    setPosition({ latitude, longitude });
+    setLatlong({ latitude, longitude });
     setError("");
   };
 
-  const onError = (error) => {
+  const onError = () => {
     setIsfind(false);
-    setPosition("");
-    setError(error.message);
+    setLatlong("");
+    setError("Unable to retrieve your location");
   };
 
-  useEffect(() => {
+  const handleTrack = () => {
     const geo = navigator.geolocation;
     setIsfind(true);
     if (!geo) {
@@ -29,7 +29,7 @@ export const usePosition = (getLocation) => {
       // status.textContent = "Locating…";
       geo.getCurrentPosition(success, onError);
     }
-  }, [getLocation]);
+  };
 
-  return { position, error, isfind };
+  return { latlong, error, isfind, handleTrack };
 };
