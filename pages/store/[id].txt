@@ -32,7 +32,6 @@ const CoffeeStore = (props) => {
   const { coffeestore } = props;
   return (
     <div className="max-w-screen-2xl mx-auto">
-      CoffeeStore: {router.query.id}
       <p className="text-red-500 text-xl">{coffeestore.name}</p>
       {coffeestore.location.neighborhood && (
         <h1 className="text-green-400 font-semibold text-lg">
